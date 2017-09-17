@@ -12,3 +12,4 @@ fun <Result> OkHttpClient.newCall( baseUrl: HttpUrl, openGisRequest: OpenGisRequ
     val call = OpenGisRequestAdapter.urlRequest( baseUrl, openGisRequest )
     return newCall( call )
 }
+
