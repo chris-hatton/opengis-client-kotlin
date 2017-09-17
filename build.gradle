@@ -23,6 +23,7 @@ buildscript {
 
 dependencies {
     compile project (':geojson-kotlin')
+    compile project (':kimage')
 
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 

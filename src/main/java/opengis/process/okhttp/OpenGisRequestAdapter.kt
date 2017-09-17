@@ -6,13 +6,13 @@ import opengis.model.request.OpenGisRequest
 
 object OpenGisRequestAdapter {
 
-    fun urlRequest( baseUrl: HttpUrl, openGisRequest: OpenGisRequest ) : Request = with(Request.Builder()) {
+    fun <Result> urlRequest( baseUrl: HttpUrl, openGisRequest: OpenGisRequest<Result> ) : Request = with(Request.Builder()) {
         method("GET",null)
         url( this@OpenGisRequestAdapter.url( baseUrl, openGisRequest ) )
         build()
     }
 
-    fun url( baseUrl: HttpUrl, openGisRequest: OpenGisRequest ) : HttpUrl {
+    fun <Result> url( baseUrl: HttpUrl, openGisRequest: OpenGisRequest<Result> ) : HttpUrl {
         val parameters = openGisRequest.getParameters()
         return with( baseUrl.newBuilder() ) {
             parameters.forEach { (name,value) -> addQueryParameter(name,value) }

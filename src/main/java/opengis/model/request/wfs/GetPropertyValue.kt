@@ -3,6 +3,6 @@ package opengis.model.request.wfs
 /**
  * Created by Chris on 24/08/2017.
  */
-class GetPropertyValue : WebFeatureServiceRequest() {
+class GetPropertyValue : WebFeatureServiceRequest<String>() {
     override val requestIdentifier: String = "GetPropertyValue"
 }

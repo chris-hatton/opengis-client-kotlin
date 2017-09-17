@@ -5,4 +5,4 @@ import opengis.model.request.OpenGisRequest
 /**
  * Created by Chris on 17/09/2017.
  */
-fun <T> OpenGisRequest.
+//fun <T> OpenGisRequest.

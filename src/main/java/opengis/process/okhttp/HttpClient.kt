@@ -8,7 +8,7 @@ import opengis.model.request.OpenGisRequest
 /**
  * Created by Chris on 16/09/2017.
  */
-fun OkHttpClient.newCall( baseUrl: HttpUrl, openGisRequest: OpenGisRequest ) : Call {
+fun <Result> OkHttpClient.newCall( baseUrl: HttpUrl, openGisRequest: OpenGisRequest<Result> ) : Call {
     val call = OpenGisRequestAdapter.urlRequest( baseUrl, openGisRequest )
-    return newCall( call ).
+    return newCall( call )
 }

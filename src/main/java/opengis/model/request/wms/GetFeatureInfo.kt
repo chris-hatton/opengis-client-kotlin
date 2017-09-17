@@ -3,6 +3,7 @@ package opengis.model.request.wms
 import opengis.model.ExceptionFormat
 import opengis.model.Layer
 import opengis.model.MimeType
+import opengis.model.response.wms.FeatureInfo
 
 /**
  *
@@ -15,7 +16,7 @@ class GetFeatureInfo(
         val pixelColumn     : Int,
         val pixelRow        : Int,
         val exceptionFormat : ExceptionFormat? = null
-) : WebMapServiceRequest() {
+) : WebMapServiceRequest<FeatureInfo>() {
     override val requestIdentifier: String = "GetFeatureInfo"
 
     override fun collateParameters(parameters: MutableList<Pair<String, String>>) {

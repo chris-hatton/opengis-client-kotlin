@@ -1,6 +1,8 @@
 package opengis.model.request.wms
 
 import geojson.BoundingBox
+import kimage.model.Image
+import kimage.model.pixel.RGB
 import opengis.model.*
 
 /**
@@ -25,7 +27,7 @@ class GetMap(
         val time            : Time?                                  = null,
         val elevation       : Elevation?                             = null,
         val dimensions      : kotlin.collections.Map<String,String>? = null
-) : WebMapServiceRequest() {
+) : WebMapServiceRequest<Image<RGB>>() {
 
     data class StyledLayer(val layer: Layer, val style: Style = Style.default )
 
