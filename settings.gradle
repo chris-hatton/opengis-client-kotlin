@@ -1,2 +1,0 @@
-include ':opengis-client-kotlin'
-includeFlat 'geojson-kotlin'

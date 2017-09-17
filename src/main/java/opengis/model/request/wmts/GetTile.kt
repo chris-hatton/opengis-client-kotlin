@@ -2,6 +2,7 @@ package opengis.model.request.wmts
 
 import opengis.model.Layer
 import opengis.model.Style
+import opengis.model.request.GetResourceRepresentation
 
 /**
  * WMTS GetTile operation request
@@ -16,16 +17,9 @@ class GetTile(
         override val tileMatrix    : String,
         override val tileRow       : Int,
         override val tileCol       : Int
-    ) : WebMapTileServiceRequest(), TileRequest {
+    ) : WebMapTileServiceRequest(), TileRequest, GetResourceRepresentation {
 
     //TODO: Sample Dimension?
 
     override val requestIdentifier: String = "GetTile"
-
-
-
-    /*
-
-     */
-
 }

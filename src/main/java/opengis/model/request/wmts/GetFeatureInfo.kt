@@ -4,7 +4,9 @@ import opengis.model.ExceptionFormat
 import opengis.model.Layer
 import opengis.model.MimeType
 import opengis.model.Style
+import opengis.model.request.GetResourceRepresentation
 import opengis.model.request.wms.GetMap
+import opengis.model.response.wmts.FeatureInfo
 
 /**
  * WMTS GetFeatureInfo operation request
@@ -26,7 +28,7 @@ class GetFeatureInfo(
     override val tileMatrix      : String,
     override val tileRow         : Int,
     override val tileCol         : Int
-) : WebMapTileServiceRequest(), TileRequest {
+) : WebMapTileServiceRequest<FeatureInfo>(), TileRequest, GetResourceRepresentation {
     override val requestIdentifier: String = "GetFeatureInfo"
 
     override fun collateParameters(parameters: MutableList<Pair<String, String>>) {

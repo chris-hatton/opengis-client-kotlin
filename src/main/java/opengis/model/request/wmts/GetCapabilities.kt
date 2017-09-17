@@ -2,6 +2,8 @@ package opengis.model.request.wmts
 
 import opengis.model.MimeType
 import opengis.model.UpdateSequence
+import opengis.model.request.GetResourceRepresentation
+import opengis.model.response.ServiceMetaData
 
 /**
  * WMTS GetCapabilities operation request
@@ -11,7 +13,7 @@ import opengis.model.UpdateSequence
 class GetCapabilities(
         val format          : MimeType,
         val updateSequence  : UpdateSequence? = null
-) : WebMapTileServiceRequest() {
+) : WebMapTileServiceRequest<ServiceMetaData>(), GetResourceRepresentation {
     override val requestIdentifier: String = "GetCapabilities"
 
     override fun collateParameters(parameters: MutableList<Pair<String, String>>) {
