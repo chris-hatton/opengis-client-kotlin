@@ -27,17 +27,11 @@ class OkHttpOpenGisClient<Image:Any>(
         imageClass        : KClass<Image>
     ) : this(baseUrl,okHttpClient, DefaultOpenGisResponseDeserializer(imageDeserializer,imageClass))
 
-    override fun <Result : Any> getBytes(request: OpenGisRequest<Result>, callback: Callback<ByteArray>) {
+    override fun <Result : Any> getBytes(request: OpenGisRequest<Result>, callback: OpenGisClient.Callback<ByteArray>) {
 
         val okHttpCallback = object : okhttp3.Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                TODO()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val bytes : ByteArray = response.body()!!.bytes()
-                callback(bytes)
-            }
+            override fun onFailure (call: Call, e: IOException    ) = callback.error(e)
+            override fun onResponse(call: Call, response: Response) = callback.success( response.body()!!.bytes() )
         }
 
         okHttpClient.newCall( baseUrl = baseUrl, openGisRequest = request ).enqueue(okHttpCallback)

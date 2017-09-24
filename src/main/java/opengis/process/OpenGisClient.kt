@@ -3,12 +3,16 @@ package opengis.process
 import opengis.model.request.OpenGisRequest
 import kotlin.reflect.KClass
 
-typealias Callback<Result> = (Result)->Unit
 
 /**
  * Created by Chris on 16/09/2017.
  */
 interface OpenGisClient {
+
+    interface Callback<in Result> {
+        fun success( result: Result )
+        fun error( error: Throwable )
+    }
 
     fun <Result:Any> execute(
             request    : OpenGisRequest<Result>,
@@ -23,7 +27,7 @@ interface OpenGisClient {
 
 inline fun <reified Result:Any> OpenGisClient.execute(
                  request    : OpenGisRequest<Result>,
-        noinline callback   : Callback<Result>
+                 callback   : OpenGisClient.Callback<Result>
 ) = this.execute(
         request    = request,
         resultType = Result::class,
