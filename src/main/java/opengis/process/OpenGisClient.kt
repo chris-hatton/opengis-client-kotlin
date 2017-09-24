@@ -15,6 +15,10 @@ interface OpenGisClient {
             resultType : KClass<Result>,
             callback   : Callback<Result>
         )
+
+    sealed class Exception : kotlin.Exception() {
+        object UnhandledRequestType : Exception()
+    }
 }
 
 inline fun <reified Result:Any> OpenGisClient.execute(

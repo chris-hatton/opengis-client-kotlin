@@ -11,7 +11,7 @@ import opengis.model.request.GetResourceRepresentation
  * Section 7.2.2.1
  * http://portal.opengeospatial.org/files/?artifact_id=35326
  */
-class GetTile(
+data class GetTile<Image>(
         override val layer         : Layer,
         override val style         : Style,
         override val format        : String,
@@ -19,7 +19,7 @@ class GetTile(
         override val tileMatrix    : String,
         override val tileRow       : Int,
         override val tileCol       : Int
-    ) : WebMapTileServiceRequest<Image<RGB>>(), TileRequest, GetResourceRepresentation {
+    ) : WebMapTileServiceRequest<Image>(), TileRequest, GetResourceRepresentation {
 
     //TODO: Sample Dimension?
 
