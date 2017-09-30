@@ -22,6 +22,7 @@ interface OpenGisClient {
 
     sealed class Exception : kotlin.Exception() {
         object UnhandledRequestType : Exception()
+        data class ServerError( val xmlString: String ) : Exception()
     }
 }
 

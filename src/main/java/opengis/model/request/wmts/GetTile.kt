@@ -23,5 +23,19 @@ data class GetTile<Image>(
 
     //TODO: Sample Dimension?
 
+     override fun collateParameters( parameters: MutableList<Pair<String,String>> ) {
+        super.collateParameters(parameters)
+        parameters.apply {
+            add("Layer"         to layer.name         )
+            add("Style"         to style.name         )
+            add("Format"        to format             )
+            add("TileMatrixSet" to tileMatrixSet      )
+            add("TileMatrix"    to tileMatrix         )
+            add("TileRow"       to tileRow.toString() )
+            add("TileCol"       to tileCol.toString() )
+        }
+    }
+
+
     override val requestIdentifier: String = "GetTile"
 }

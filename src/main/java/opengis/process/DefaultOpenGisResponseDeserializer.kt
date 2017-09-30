@@ -26,8 +26,9 @@ class DefaultOpenGisResponseDeserializer<Image:Any> (
 
         @Suppress("UNCHECKED_CAST")
         return when( resultClass ) {
-            imageClass -> imageDeserializer(bytes) as Result
-            else       -> jsonDeserializer(bytes)
+            ByteArray::class -> bytes as Result
+            imageClass       -> imageDeserializer(bytes) as Result
+            else             -> jsonDeserializer(bytes)
         }
     }
 

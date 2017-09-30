@@ -14,7 +14,7 @@ import opengis.model.response.wmts.FeatureInfo
  * http://portal.opengeospatial.org/files/?artifact_id=35326
  */
 class GetFeatureInfo(
-             val mapRequest      : GetMap,
+             val mapRequest      : GetMap<*>,
              val queryLayers     : List<Layer>,
              val infoFormat      : MimeType,
              val featureCount    : Int?             = null,

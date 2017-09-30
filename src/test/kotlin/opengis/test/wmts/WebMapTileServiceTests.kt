@@ -15,7 +15,8 @@ class WebMapTileServiceTests : OpenGisTests() {
     @Test
     fun testGetCapabilities() {
         val request = GetCapabilities( format = MimeType.JSON, updateSequence = null )
-        httpClient.newCall("")
+        TODO()
+        //httpClient.newCall("")
     }
 
     @Ignore("Not yet implemented")

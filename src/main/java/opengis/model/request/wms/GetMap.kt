@@ -14,7 +14,7 @@ import opengis.model.*
  * @param layers One or more map layers.
  * @param styles One rendering style per requested layer.
  */
-class GetMap(
+data class GetMap<Image>(
         val styledLayers    : List<StyledLayer>,
         val reference       : CRS,
         val boundingBox     : BoundingBox,
@@ -27,7 +27,7 @@ class GetMap(
         val time            : Time?                                  = null,
         val elevation       : Elevation?                             = null,
         val dimensions      : kotlin.collections.Map<String,String>? = null
-) : WebMapServiceRequest<Image<RGB>>() {
+) : WebMapServiceRequest<Image>() {
 
     data class StyledLayer(val layer: Layer, val style: Style = Style.default )
 

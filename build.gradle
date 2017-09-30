@@ -34,5 +34,5 @@ dependencies {
     // Gson
     compile "com.google.code.gson:gson:$gson_version"
 
-
+    testCompile 'junit:junit:4.12'
 }

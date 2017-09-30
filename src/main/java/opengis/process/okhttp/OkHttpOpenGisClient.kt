@@ -25,15 +25,31 @@ class OkHttpOpenGisClient<Image:Any>(
         okHttpClient      : OkHttpClient = OkHttpClient.Builder().build(),
         imageDeserializer : Deserializer<Image>,
         imageClass        : KClass<Image>
-    ) : this(baseUrl,okHttpClient, DefaultOpenGisResponseDeserializer(imageDeserializer,imageClass))
+    ) : this(
+        baseUrl              = baseUrl,
+        okHttpClient         = okHttpClient,
+        responseDeserializer = DefaultOpenGisResponseDeserializer(imageDeserializer,imageClass)
+    )
 
     override fun <Result : Any> getBytes(request: OpenGisRequest<Result>, callback: OpenGisClient.Callback<ByteArray>) {
 
         val okHttpCallback = object : okhttp3.Callback {
             override fun onFailure (call: Call, e: IOException    ) = callback.error(e)
-            override fun onResponse(call: Call, response: Response) = callback.success( response.body()!!.bytes() )
+            override fun onResponse(call: Call, response: Response) {
+
+                when( response.code() ) {
+                    200 -> callback.success( response.body()!!.bytes() )
+                    else -> {
+                        val errorXml = response.body()!!.string()
+                        println(errorXml)
+                        val error = OpenGisClient.Exception.ServerError( xmlString = errorXml )
+                        callback.error(error)
+                    }
+                }
+            }
         }
 
-        okHttpClient.newCall( baseUrl = baseUrl, openGisRequest = request ).enqueue(okHttpCallback)
+        val call = okHttpClient.newCall( baseUrl = baseUrl, openGisRequest = request )
+        call.enqueue(okHttpCallback)
     }
 }

@@ -9,7 +9,7 @@ import opengis.model.response.wms.FeatureInfo
  *
  */
 class GetFeatureInfo(
-        val mapRequest      : GetMap,
+        val mapRequest      : GetMap<*>,
         val queryLayers     : List<Layer>,
         val infoFormat      : MimeType,
         val featureCount    : Int?             = null,

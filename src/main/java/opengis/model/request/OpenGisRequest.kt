@@ -7,7 +7,7 @@ import okhttp3.HttpUrl
  * These seem to follow an informal protocol that all specify
  * Version, Service and type of Request.
  */
-abstract class OpenGisRequest<Result>( val version : String = OpenGisRequest.version ) {
+abstract class OpenGisRequest<Result>( val version : String = OpenGisRequest.Companion.version ) {
 
     companion object {
         val version = "1.3.0"
@@ -20,8 +20,9 @@ abstract class OpenGisRequest<Result>( val version : String = OpenGisRequest.ver
     }
 
     open protected fun collateParameters( parameters: MutableList<Pair<String,String>> ) {
+        val v = version
         parameters.apply {
-            add("VERSION" to version          )
+            add("VERSION" to v          )
             add("SERVICE" to serviceIdentifier)
             add("REQUEST" to requestIdentifier)
         }

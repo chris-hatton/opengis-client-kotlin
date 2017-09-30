@@ -3,10 +3,11 @@ package opengis.model
 /**
  * Created by Chris on 10/08/2017.
  */
-class Style( val name: String = "" ) {
+class Style( val name: String = defaultStyleName ) {
 
     companion object {
-        val default = Style("")
+        val defaultStyleName = ""
+        val default = Style(defaultStyleName)
     }
 
     override fun toString() : String = name

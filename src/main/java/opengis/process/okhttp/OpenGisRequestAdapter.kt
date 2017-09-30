@@ -8,7 +8,9 @@ object OpenGisRequestAdapter {
 
     fun <Result> urlRequest( baseUrl: HttpUrl, openGisRequest: OpenGisRequest<Result> ) : Request = with(Request.Builder()) {
         method("GET",null)
-        url( this@OpenGisRequestAdapter.url( baseUrl, openGisRequest ) )
+        val url : HttpUrl = this@OpenGisRequestAdapter.url( baseUrl, openGisRequest )
+        println("OpenGIS URL: '$url'")
+        url( url )
         build()
     }
 
