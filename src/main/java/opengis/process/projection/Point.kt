@@ -225,7 +225,7 @@ sealed class Point<Unit>(val x:Unit, val y:Unit) {
         }
 
         /** Returns tile for this mercator coordinate */
-        fun toTmsTile(zoom: Int ) : Tile.TMS = toPixels(zoom).toTmsTile()
+        fun toTmsTile(zoom: Int) : Tile.TMS = toPixels(zoom).toTmsTile()
     }
 
     class Pixels(x: Int, y: Int, val zoom: Int) : Point<Int>(x,y) {
@@ -301,25 +301,41 @@ data class Bounds<out P:Point<*>>( val southWest: P, val northEast: P ) {
     )
 }
 
+enum class Projection {
+    GlobalGeodetic, // Google Earth (EPSG:4326
+    GlobalMercator  // Google Maps  (EPSG 3857/EPSG:900913)
+}
+
 sealed class Tile(val x:Int, val y: Int, val zoom: Int) {
     class TMS(x:Int, y: Int, zoom: Int) : Tile(x,y,zoom) {
 
         /** Returns bounds of the given tile */
-        fun toPixelBounds() : Bounds<Point.Pixels> {
-            val res : Double = Point.mercatorResolution(zoom)
+        fun toDegreeBounds(projection: Projection ) : Bounds<Point.Degrees> = when(projection) {
+            Projection.GlobalGeodetic -> toGeodeticDegreeBounds()
+            Projection.GlobalMercator -> toMercatorDegreeBounds()
+        }
 
-            val southWest = Point.Pixels(( x   *256*res - 180).toInt(),( y   *256*res - 90).toInt(), zoom)
-            val northEast = Point.Pixels(((x+1)*256*res - 180).toInt(),((y+1)*256*res - 90).toInt(), zoom)
+        private fun toGeodeticDegreeBounds() : Bounds<Point.Degrees> {
+            val res : Double = Point.geodeticResolution(zoom)
+
+            val southWest = Point.Degrees(
+                longitude = ( x   * 256 * res - 180),
+                latitude  = ( y   * 256 * res - 90 )
+            )
+
+            val northEast = Point.Degrees(
+                longitude = (x+1) * 256 * res - 180,
+                latitude  = (y+1) * 256 * res - 90
+            )
 
             return Bounds( southWest, northEast )
         }
 
-        /** "Returns bounds of the given tile in latutude/longitude using WGS84 datum" */
-        fun toDegreeBounds() : Bounds<Point.Degrees> = toPixelBounds().toDegrees()
+        private fun toMercatorDegreeBounds() : Bounds<Point.Degrees> = toMercatorMeterBounds().toDegrees()
 
         /** Returns bounds of the given tile in EPSG:900913 coordinates */
-        fun toMeterBounds() : Bounds<Point.Meters> = Bounds(
-            southWest = Point.Pixels(x * tileSize, y * tileSize, zoom ),
+        fun toMercatorMeterBounds() : Bounds<Point.Meters> = Bounds(
+            southWest = Point.Pixels( x      * tileSize,  y      * tileSize, zoom ),
             northEast = Point.Pixels((x + 1) * tileSize, (y + 1) * tileSize, zoom )
         ).toMeters()
 
@@ -327,7 +343,7 @@ sealed class Tile(val x:Int, val y: Int, val zoom: Int) {
          * Converts TMS tile coordinates to Google Tile coordinates
          * coordinate origin is moved from bottom-left to top-left corner of the extent
          */
-        fun toGoogle() : Google = Google(x, (Math.pow(2.0, zoom.toDouble()).toInt() - 1) - y, zoom)
+        fun toGoogle() : Google = Google(x, flippedY(), zoom)
 
         /** "Converts TMS tile coordinates to Microsoft QuadTree" */
         fun toMicrosoftQuadTree() : String {
@@ -352,10 +368,10 @@ sealed class Tile(val x:Int, val y: Int, val zoom: Int) {
     class Google(x:Int, y: Int, zoom: Int) : Tile(x,y,zoom) {
 
         /** Returns bounds of this Google Tile in latitude/longitude using WGS84 datum */
-        fun toDegreeBounds() : Bounds<Point.Degrees> = toTms().toDegreeBounds()
+        fun toBounds(projection: Projection) : Bounds<Point.Degrees> = toTms().toDegreeBounds(projection)
 
         /** Converts Google Tile coordinates to TMS tile coordinates. */
-        fun toTms() : TMS = TMS(x, y - (Math.pow(2.0, zoom.toDouble() - 1.0)).toInt(),zoom)
+        fun toTms() : TMS = TMS(x, flippedY(), zoom)
 
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -366,6 +382,26 @@ sealed class Tile(val x:Int, val y: Int, val zoom: Int) {
         override fun hashCode(): Int {
             return javaClass.hashCode()
         }
+    }
+
+    protected fun flippedY() = (Math.pow(2.0, zoom.toDouble()).toInt() - 1) - y
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Tile) return false
+
+        if (x != other.x) return false
+        if (y != other.y) return false
+        if (zoom != other.zoom) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = x
+        result = 31 * result + y
+        result = 31 * result + zoom
+        return result
     }
 }
 

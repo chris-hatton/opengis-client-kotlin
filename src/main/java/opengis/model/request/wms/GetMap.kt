@@ -52,7 +52,7 @@ data class GetMap<Image>(
             // Mandatory parameters
             add( "LAYERS"    to styledLayers.map { it.layer }.joinToString(",") )
             add( "STYLES"    to styledLayers.map { it.style }.joinToString(",") )
-            add( "CRS"       to reference  .toString() )
+            add( "SRSNAME"   to reference  .toString() )
             add( "BBOX"      to boundingBox.toString() )
             add( "WIDTH"     to width      .toString() )
             add( "HEIGHT"    to height     .toString() )
