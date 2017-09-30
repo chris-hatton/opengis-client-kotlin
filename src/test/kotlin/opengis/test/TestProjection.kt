@@ -19,6 +19,15 @@ class TestProjection {
     }
 
     @Test
+    fun testChangeZoom() {
+        val originalZoom = 2
+        val original = Point.Pixels(123,321,originalZoom)
+        val changed  = original.toPixels(16)
+        val after    = changed.toPixels(originalZoom)
+        assertEquals( original, after )
+    }
+
+    @Test
     fun testPointDegreesToMeters() {
         run {
             val degrees        = Point.Degrees( longitude = -135.0, latitude = 66.51326044311185 )
@@ -60,8 +69,8 @@ class TestProjection {
         run {
             val tmsTile = Tile.TMS(x = 9, y = 12, zoom = 4)
             val expectedMercatorBounds = Bounds(
-                    southWest = Point.Meters(x = 2504688.542848654, y = 10018754.17139462),
-                    northEast = Point.Meters(x = 5009377.085697312, y = 12523442.714243278)
+                southWest = Point.Meters(x = 2504688.542848654, y = 10018754.17139462 ),
+                northEast = Point.Meters(x = 5009377.085697312, y = 12523442.714243278)
             )
             val actualMercatorBounds = tmsTile.toMercatorMeterBounds()
             actualMercatorBounds.assertApproxEquals(expectedMercatorBounds)
