@@ -1,7 +1,8 @@
 package opengis.process
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.ASCIIUtility.getBytes
 import opengis.model.request.OpenGisRequest
+import opengis.process.deserialize.OpenGisResponseDeserializer
+import java.io.InputStream
 import kotlin.reflect.KClass
 
 /**
@@ -15,8 +16,8 @@ interface DeserializingOpenGisClient : OpenGisClient, OpenGisResponseDeserialize
             callback   : OpenGisClient.Callback<Result>
         ) {
 
-        val bytesCallback = object : OpenGisClient.Callback<ByteArray> {
-            override fun success(result: ByteArray) {
+        val bytesCallback = object : OpenGisClient.Callback<InputStream> {
+            override fun success(result: InputStream) {
                 try {
                     val deserializedResult = deserializeResult( result, request, resultType )
                     callback.success( deserializedResult )
@@ -31,5 +32,5 @@ interface DeserializingOpenGisClient : OpenGisClient, OpenGisResponseDeserialize
         getBytes( request, bytesCallback )
     }
 
-    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: OpenGisClient.Callback<ByteArray>)
+    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: OpenGisClient.Callback<InputStream>)
 }

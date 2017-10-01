@@ -3,7 +3,7 @@ package opengis.model.request.wmts
 import opengis.model.MimeType
 import opengis.model.UpdateSequence
 import opengis.model.request.GetResourceRepresentation
-import opengis.model.response.ServiceMetaData
+import opengis.model.response.wmts.ServiceMetaData
 
 /**
  * WMTS GetCapabilities operation request

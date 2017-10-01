@@ -35,4 +35,15 @@ dependencies {
     compile "com.google.code.gson:gson:$gson_version"
 
     testCompile 'junit:junit:4.12'
+
+//    // JAXB
+//    compile "org.glassfish.jaxb:jaxb-runtime:2.3.0"
+//
+//    // OpenGIS JAXB entities
+//    compile "org.jvnet.ogc:wms-v_1_3_0:2.6.1"
+//    compile "org.jvnet.ogc:wmts-v_1_0_0:1.1.0"
+//    compile "org.jvnet.ogc:wfs-v_2_0:2.6.1"
+
+    compile "xmlpull:xmlpull:1.1.3.1"
+    //compile group: "net.sf.kxml:kxml2:2.3.0"
 }

@@ -1,4 +1,4 @@
-package opengis.model.response
+package opengis.model.response.wfs
 
 /**
  * Model for the Service Meta-data document generated in response to OpenGIS 'GetCapabilties'

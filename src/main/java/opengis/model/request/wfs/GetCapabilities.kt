@@ -2,7 +2,7 @@ package opengis.model.request.wfs
 
 import opengis.model.MimeType
 import opengis.model.UpdateSequence
-import opengis.model.response.ServiceMetaData
+import opengis.model.response.wfs.ServiceMetaData
 
 /**
  *
