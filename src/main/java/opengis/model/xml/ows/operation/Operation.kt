@@ -1,5 +1,9 @@
 package opengis.model.xml.ows.operation
 
+import org.simpleframework.xml.Attribute
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.ElementList
+
 /**
  * Created by Chris on 02/10/2017.
  */
@@ -32,7 +36,8 @@ package opengis.model.xml.ows.operation
     </ows:Operation>
  */
 data class Operation(
-    val DCP         : DCP,
-    val parameters  : List<Parameter>,
-    val constraints : List<Constraint>
+        @field:Attribute  ( name="name", required = false) var name        : String?           = null,
+        @field:Element    ( name="DCP"        )            var DCP         : DCP?              = null,
+        @field:ElementList( entry="Parameter" , inline = true, required = false ) var parameters  : List<Parameter>?  = null,
+        @field:ElementList( entry="Constraint", inline = true, required = false ) var constraints : List<Constraint>? = null
 )

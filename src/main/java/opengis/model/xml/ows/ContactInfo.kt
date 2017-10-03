@@ -16,6 +16,6 @@ import org.simpleframework.xml.Element
       </ows:ContactInfo>
  */
 data class ContactInfo(
-    @Element val phone   : Phone,
-    @Element val address : Address
+    @field:Element(name="Phone"  ) var phone   : Phone?   = null,
+    @field:Element(name="Address") var address : Address? = null
 )

@@ -1,14 +1,12 @@
 package opengis.model.xml.ows.operation
 
+import org.simpleframework.xml.Attribute
+import org.simpleframework.xml.ElementList
+
 /**
- * Created by Chris on 02/10/2017.
- */
-/*
-    <ows:Constraint name="LocalTraverseXLinkScope">
-        <ows:Value>2</ows:Value>
-    </ows:Constraint>
+ * Created by Chris on 03/10/2017.
  */
 data class Constraint(
-    val name  : String,
-    val value : String
+    @field:Attribute(name="name") var name : String? = null,
+    @field:ElementList(entry="Value",inline=true) var values : List<String>? = null
 )

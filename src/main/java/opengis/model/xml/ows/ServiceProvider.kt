@@ -14,6 +14,6 @@ import org.simpleframework.xml.Element
   </ows:ServiceProvider>
  */
 class ServiceProvider(
-    @Element val providerName   : String,
-    @Element val serviceContact : ServiceContact
+    @field:Element(name="ProviderName"  ) var providerName   : String?         = null,
+    @field:Element(name="ServiceContact") var serviceContact : ServiceContact? = null
 )

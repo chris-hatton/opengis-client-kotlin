@@ -15,7 +15,7 @@ import org.simpleframework.xml.Element
     </ows:ServiceContact>
  */
 data class ServiceContact(
-        @Element val individualName : String,
-        @Element val positionName   : String,
-        @Element val contactInfo    : ContactInfo
+    @field:Element(name="IndividualName") var individualName : String?      = null,
+    @field:Element(name="PositionName"  ) var positionName   : String?      = null,
+    @field:Element(name="ContactInfo"   ) var contactInfo    : ContactInfo? = null
 )

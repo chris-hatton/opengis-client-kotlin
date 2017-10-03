@@ -1,5 +1,9 @@
 package opengis.model.xml.ows.operation
 
+import org.simpleframework.xml.Attribute
+import org.simpleframework.xml.ElementList
+import org.simpleframework.xml.Root
+
 /**
  * Created by Chris on 02/10/2017.
  */
@@ -24,6 +28,6 @@ package opengis.model.xml.ows.operation
       </ows:Parameter>
  */
 data class Parameter(
-        val name   : String,
-        val values : List<String>
+    @field:Attribute(name="name") var name : String? = null,
+    @field:ElementList(entry="Value",inline=true) var values : List<String>? = null
 )

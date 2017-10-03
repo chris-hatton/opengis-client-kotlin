@@ -3,12 +3,10 @@ package opengis.process.deserialize.impl
 import opengis.model.request.OpenGisRequest
 import opengis.model.xml.wfs.WfsCapabilities
 import opengis.process.deserialize.OpenGisResponseDeserializer
-import opengis.process.deserialize.unmarshal.impl.WfsCapabilitiesUnmarshaller
+import org.simpleframework.xml.core.Persister
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
 import kotlin.reflect.KClass
-import org.xmlpull.v1.XmlPullParser
-import java.io.InputStreamReader
 
 /**
  * Created by Chris on 01/10/2017.
@@ -20,12 +18,9 @@ class OpenGisXmlResponseDeserializer(val pullParserFactory: XmlPullParserFactory
         request     : OpenGisRequest<Result>,
         resultClass : KClass<Result>
     ): Result {
-        val parser: XmlPullParser = pullParserFactory.newPullParser().apply {
-            setInput(InputStreamReader(bytes))
-            setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
-        }
+        val serializer = Persister()
         return when( resultClass ) {
-            WfsCapabilities::class -> WfsCapabilitiesUnmarshaller.unmarshal(parser) as Result
+            WfsCapabilities::class -> serializer.read(WfsCapabilities::class.java, bytes) as Result
             else -> throw OpenGisResponseDeserializer.Exception.UnhandledType
         }
     }

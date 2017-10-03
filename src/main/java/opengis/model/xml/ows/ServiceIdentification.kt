@@ -1,6 +1,8 @@
 package opengis.model.xml.ows
 
 import org.simpleframework.xml.Element
+import org.simpleframework.xml.ElementList
+import org.simpleframework.xml.Root
 
 /**
  * Created by Chris on 02/10/2017.
@@ -21,11 +23,11 @@ import org.simpleframework.xml.Element
   </ows:ServiceIdentification>
  */
 data class ServiceIdentification(
-    @Element val title              : String,
-    @Element val abstract           : String,
-    @Element val keywords           : List<String>,
-    @Element val serviceType        : String,
-    @Element val serviceTypeVersion : String,
-    @Element val fees               : String,
-    @Element val accessConstraints  : String
+    @field:Element    (name="Title"             ) var title              : String?       = null,
+    @field:Element    (name="Abstract"          ) var abstract           : String?       = null,
+    @field:ElementList(name="Keywords"          ) var keywords           : List<String>? = null,
+    @field:Element    (name="ServiceType"       ) var serviceType        : String?       = null,
+    @field:Element    (name="ServiceTypeVersion") var serviceTypeVersion : String?       = null,
+    @field:Element    (name="Fees"              ) var fees               : String?       = null,
+    @field:Element    (name="AccessConstraints" ) var accessConstraints  : String?       = null
 )

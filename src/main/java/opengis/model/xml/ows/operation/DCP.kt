@@ -1,6 +1,9 @@
 package opengis.model.xml.ows.operation
 
 import okhttp3.HttpUrl
+import org.simpleframework.xml.Element
+import org.simpleframework.xml.ElementList
+import org.simpleframework.xml.ElementMap
 
 /**
  * Created by Chris on 02/10/2017.
@@ -12,5 +15,5 @@ import okhttp3.HttpUrl
 </ows:HTTP>
  */
 data class DCP(
-        val httpUrls: List<HttpUrl>
+    @field:Element(name="HTTP") var httpUrls: HTTP? = null
 )
