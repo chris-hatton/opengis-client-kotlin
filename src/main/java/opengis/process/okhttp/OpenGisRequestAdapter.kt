@@ -2,7 +2,7 @@ package opengis.process.okhttp
 
 import okhttp3.HttpUrl
 import okhttp3.Request
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 
 object OpenGisRequestAdapter {
 

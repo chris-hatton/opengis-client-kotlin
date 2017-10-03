@@ -1,6 +1,6 @@
 package opengis.process.deserialize
 
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import opengis.process.deserialize.impl.ByteArrayDeserializer
 import opengis.process.deserialize.impl.OpenGisXmlResponseDeserializer
 import opengis.process.deserialize.impl.OpenGisJsonResponsesDeserializer

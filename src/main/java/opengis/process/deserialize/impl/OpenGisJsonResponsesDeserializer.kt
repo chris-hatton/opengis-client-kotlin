@@ -4,7 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import geojson.Feature
 import geojson.FeatureCollection
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import opengis.process.deserialize.OpenGisResponseDeserializer
 import java.io.InputStream
 import java.io.InputStreamReader

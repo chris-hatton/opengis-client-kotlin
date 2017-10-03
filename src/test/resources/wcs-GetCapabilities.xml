@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wcs:WCS_Capabilities updateSequence="25744" version="1.0.0"
+                      xmlns:gml="http://www.opengis.net/gml"
+                      xmlns:ogc="http://www.opengis.net/ogc"
+                      xmlns:ows="http://www.opengis.net/ows/1.1"
+                      xmlns:wcs="http://www.opengis.net/wcs"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xsi:schemaLocation="http://www.opengis.net/wcs http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/schemas/wcs/1.0.0/wcsCapabilities.xsd">
+    <wcs:Service>
+        <wcs:metadataLink about="http://geoserver.sourceforge.net/html/index.php"
+                          metadataType="other" xlink:type="simple"/>
+        <wcs:description>This server implements the WCS specification 1.0 and 1.1.1, it's reference
+            implementation of WCS 1.1.1. All layers published by this service are available on WMS
+            also.
+        </wcs:description>
+        <wcs:name>WCS</wcs:name>
+        <wcs:label>Web Coverage Service</wcs:label>
+        <wcs:keywords>
+            <wcs:keyword>WCS</wcs:keyword>
+            <wcs:keyword>WMS</wcs:keyword>
+            <wcs:keyword>GEOSERVER</wcs:keyword>
+        </wcs:keywords>
+        <wcs:responsibleParty>
+            <wcs:individualName>Service Center</wcs:individualName>
+            <wcs:organisationName>DELWP</wcs:organisationName>
+            <wcs:positionName>Web Data Services</wcs:positionName>
+            <wcs:contactInfo>
+                <wcs:phone>
+                    <wcs:voice>136186</wcs:voice>
+                </wcs:phone>
+                <wcs:address>
+                    <wcs:deliveryPoint>Work 570 Bourke Street</wcs:deliveryPoint>
+                    <wcs:city>Melbourne</wcs:city>
+                    <wcs:administrativeArea>Vic</wcs:administrativeArea>
+                    <wcs:postalCode>3000</wcs:postalCode>
+                    <wcs:country>Australia</wcs:country>
+                    <wcs:electronicMailAddress>GIS.Helpdesk@delwp.vic.gov.au
+                    </wcs:electronicMailAddress>
+                </wcs:address>
+            </wcs:contactInfo>
+        </wcs:responsibleParty>
+        <wcs:fees>NONE</wcs:fees>
+        <wcs:accessConstraints>NONE</wcs:accessConstraints>
+    </wcs:Service>
+    <wcs:Capability>
+        <wcs:Request>
+            <wcs:GetCapabilities>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Get>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Get>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Post>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Post>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+            </wcs:GetCapabilities>
+            <wcs:DescribeCoverage>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Get>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Get>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Post>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Post>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+            </wcs:DescribeCoverage>
+            <wcs:GetCoverage>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Get>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Get>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+                <wcs:DCPType>
+                    <wcs:HTTP>
+                        <wcs:Post>
+                            <wcs:OnlineResource
+                                xlink:href="http://services.land.vic.gov.au/catalogue/publicproxy/guest/dv_geoserver/datavic/wcs?"/>
+                        </wcs:Post>
+                    </wcs:HTTP>
+                </wcs:DCPType>
+            </wcs:GetCoverage>
+        </wcs:Request>
+        <wcs:Exception>
+            <wcs:Format>application/vnd.ogc.se_xml</wcs:Format>
+        </wcs:Exception>
+    </wcs:Capability>
+    <wcs:ContentMetadata/>
+</wcs:WCS_Capabilities>

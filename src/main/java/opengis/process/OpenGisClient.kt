@@ -1,6 +1,6 @@
 package opengis.process
 
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import kotlin.reflect.KClass
 
 

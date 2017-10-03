@@ -1,8 +1,7 @@
 package opengis.test.wmts
 
-import opengis.model.MimeType
-import opengis.model.request.wmts.GetCapabilities
-import opengis.process.okhttp.newCall
+import opengis.model.app.MimeType
+import opengis.model.app.request.wmts.GetCapabilities
 import opengis.test.OpenGisTests
 import org.junit.Ignore
 import org.junit.Test

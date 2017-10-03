@@ -34,17 +34,10 @@ dependencies {
     // Gson
     compile "com.google.code.gson:gson:$gson_version"
 
-    testCompile 'junit:junit:4.12'
-    //testCompile 'net.sf.kxml:kxml2:2.3.0'
-
-    //compile "xmlpull:xmlpull:1.1.3.1"
+    // SimpleXML
     compile "org.simpleframework:simple-xml:2.7.1"
 
-    // OpenGIS model
-    // compile "org.jvnet.ogc:wms-v_1_3_0:2.6.1"
-    // compile "org.jvnet.ogc:wmts-v_1_0_0:1.1.0"
-    // compile "org.jvnet.ogc:wfs-v_2_0:2.6.1"
-
+    testCompile 'junit:junit:4.12'
 }
 
 task copyTestResources(type: Copy) {

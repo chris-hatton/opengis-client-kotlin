@@ -1,6 +1,6 @@
 package opengis.process.deserialize.impl
 
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import opengis.model.xml.wfs.WfsCapabilities
 import opengis.process.deserialize.OpenGisResponseDeserializer
 import org.simpleframework.xml.core.Persister

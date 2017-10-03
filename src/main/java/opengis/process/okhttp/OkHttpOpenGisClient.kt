@@ -4,7 +4,7 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import opengis.process.*
 import opengis.process.deserialize.OpenGisResponseDeserializer
 import java.io.IOException

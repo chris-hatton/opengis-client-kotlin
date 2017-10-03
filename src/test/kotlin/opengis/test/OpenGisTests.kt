@@ -2,7 +2,7 @@ package opengis.test
 
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
-import opengis.model.request.OpenGisRequest
+import opengis.model.app.request.OpenGisRequest
 import org.junit.Before
 import opengis.process.okhttp.newCall
 
