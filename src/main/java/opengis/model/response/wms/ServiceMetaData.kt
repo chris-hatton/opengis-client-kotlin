@@ -7,6 +7,6 @@ package opengis.model.response.wms
 class ServiceMetaData {
 
     init {
-        TODO("Implement this stub")
+        //TODO("Implement this stub")
     }
 }

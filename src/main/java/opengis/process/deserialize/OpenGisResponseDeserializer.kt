@@ -2,7 +2,7 @@ package opengis.process.deserialize
 
 import opengis.model.request.OpenGisRequest
 import opengis.process.deserialize.impl.ByteArrayDeserializer
-import opengis.process.deserialize.impl.CapabilitiesDeserializer
+import opengis.process.deserialize.impl.OpenGisXmlResponseDeserializer
 import opengis.process.deserialize.impl.OpenGisJsonResponsesDeserializer
 import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
@@ -40,7 +40,7 @@ interface OpenGisResponseDeserializer {
     companion object {
         fun createDefault( xmlPullParserFactory: XmlPullParserFactory ) : OpenGisResponseDeserializer {
             return ByteArrayDeserializer()
-                .then(CapabilitiesDeserializer(xmlPullParserFactory))
+                .then(OpenGisXmlResponseDeserializer(xmlPullParserFactory))
                 .then(OpenGisJsonResponsesDeserializer())
         }
     }

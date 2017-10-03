@@ -18,12 +18,13 @@ class OpenGisJsonResponsesDeserializer(
         bytes: InputStream,
         request: OpenGisRequest<Result>,
         resultClass: KClass<Result>
-    ) : Result = when( resultClass ) {
+    ) : Result = if( supportedTypes.contains(resultClass) ) {
+        val byteReader = InputStreamReader(bytes)
+        gson.fromJson<Result>( byteReader, resultClass.java )
+    } else throw OpenGisResponseDeserializer.Exception.UnhandledType
+
+    private val supportedTypes : List<KClass<*>> = listOf(
         FeatureCollection::class,
-        Feature::class -> {
-            val byteReader      = InputStreamReader(bytes)
-            gson.fromJson<Result>( byteReader, resultClass.java )
-        }
-        else -> throw OpenGisResponseDeserializer.Exception.UnhandledType
-    }
+        Feature::class
+    )
 }
