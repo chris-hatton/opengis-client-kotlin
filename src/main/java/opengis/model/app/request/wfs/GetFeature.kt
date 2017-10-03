@@ -1,6 +1,5 @@
-package opengis.model.request.wfs
+package opengis.model.app.request.wfs
 
-import geojson.Feature
 import geojson.FeatureCollection
 
 /**

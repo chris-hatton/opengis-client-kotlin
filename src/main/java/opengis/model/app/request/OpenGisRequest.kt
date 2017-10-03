@@ -1,6 +1,4 @@
-package opengis.model.request
-
-import okhttp3.HttpUrl
+package opengis.model.app.request
 
 /**
  * Base class for requests to all OpenGIS standard webservices.

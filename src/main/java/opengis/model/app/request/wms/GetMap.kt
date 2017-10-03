@@ -1,9 +1,7 @@
-package opengis.model.request.wms
+package opengis.model.app.request.wms
 
 import geojson.BoundingBox
-import kimage.model.Image
-import kimage.model.pixel.RGB
-import opengis.model.*
+import opengis.model.app.*
 
 /**
  * Ref: Section 7.3 of OpenGIS Web Map Service WMS Implementation Specification
