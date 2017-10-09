@@ -1,11 +1,5 @@
 package opengis.model.xml.wms
 
-import opengis.model.xml.ogc.FilterCapabilities
-import opengis.model.xml.ows.CapabilitiesBaseType
-import opengis.model.xml.ows.OperationsMetadata
-import opengis.model.xml.ows.ServiceIdentification
-import opengis.model.xml.ows.ServiceProvider
-import opengis.model.xml.wfs.FeatureTypeList
 import org.simpleframework.xml.Attribute
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
@@ -16,13 +10,8 @@ import org.simpleframework.xml.Root
  */
 @Root(strict=false, name = "WMS_Capabilities")
 class WmsCapabilities(
-        @field:Attribute var updateSequence : Int      = 0,
-        @field:Attribute var version        : String   = "",
-        serviceIdentification : ServiceIdentification? = null,
-        serviceProvider       : ServiceProvider?       = null,
-        operationsMetadata    : OperationsMetadata?    = null
-) : CapabilitiesBaseType(
-        serviceIdentification,
-        serviceProvider,
-        operationsMetadata
+        @field:Attribute var updateSequence : Int         = 0,
+        @field:Attribute var version        : String      = "",
+        @field:Element   var service        : Service?    = null,
+        @field:Element   var capability     : Capability? = null
 )

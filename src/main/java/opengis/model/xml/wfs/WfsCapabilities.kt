@@ -25,5 +25,5 @@ class WfsCapabilities(
 ) : CapabilitiesBaseType(
     serviceIdentification,
     serviceProvider,
-        operationsMetadata
+    operationsMetadata
 )

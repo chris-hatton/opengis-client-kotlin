@@ -1,6 +1,7 @@
 package opengis.test.wfs
 
 import opengis.model.xml.wfs.WfsCapabilities
+import opengis.model.xml.wms.WmsCapabilities
 import org.junit.Test
 import org.simpleframework.xml.core.Persister
 
@@ -28,6 +29,16 @@ class CapabilitiesDeserializerTests {
         val input = this.javaClass.getResourceAsStream("/wfs-GetCapabilities.xml")
         val serializer = Persister()
         val example = serializer.read(WfsCapabilities::class.java, input)
+        println(example)
+
+        //Assert.assertEquals( "Hello", serviceMetaData.serviceProvider.providerName )
+    }
+
+    @Test
+    fun testDeserializeWmsCapabilities() {
+        val input = this.javaClass.getResourceAsStream("/wms-GetCapabilities.xml")
+        val serializer = Persister()
+        val example = serializer.read(WmsCapabilities::class.java, input)
         println(example)
 
         //Assert.assertEquals( "Hello", serviceMetaData.serviceProvider.providerName )
