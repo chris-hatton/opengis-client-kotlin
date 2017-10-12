@@ -5,13 +5,12 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 /**
- * Model for the Service Meta-data document generated in response to OpenGIS 'GetCapabilties'
- * requests.
+ * A WMS_Capabilities document is returned in response to a GetCapabilities request made on a WMS.
  */
 @Root(strict=false, name = "WMS_Capabilities")
 class WmsCapabilities(
-        @field:Attribute var updateSequence : Int         = 0,
-        @field:Attribute var version        : String      = "",
+        //@field:Attribute var updateSequence : Int         = 0,
+        //@field:Attribute var version        : String      = "",
         @field:Element   var service        : Service?    = null,
         @field:Element   var capability     : Capability? = null
 )
