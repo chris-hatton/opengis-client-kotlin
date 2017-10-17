@@ -1,4 +1,4 @@
-package opengis.test.wmts
+package opengis.test
 
 import opengis.model.app.MimeType
 import opengis.model.app.request.wmts.GetCapabilities
@@ -9,7 +9,7 @@ import org.junit.Test
 /**
  * Created by Chris on 19/09/2017.
  */
-class WebMapTileServiceTests : OpenGisTests() {
+abstract class AbstractWmtsTests : OpenGisTests() {
     @Ignore("Not yet implemented")
     @Test
     fun testGetCapabilities() {
