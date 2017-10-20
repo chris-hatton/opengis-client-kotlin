@@ -150,7 +150,22 @@ class WmsCapabilities(
                     @field:Attribute(name="resy", required = false) var resy : Double? = null
                 )
 
+                /**
+                 * The Dimension element declares the existence of a dimension and indicates what
+                 * values along a dimension are valid.
+                 */
+                @Root(name="Dimension")
+                data class Dimension(
 
+                    @field:Attribute(name="Name"          , required = true  ) var name           : String?  = null,
+                    @field:Attribute(name="Units"         , required = true  ) var units          : String?  = null,
+                    @field:Attribute(name="UnitSymbol"    , required = false ) var unitSymbol     : String?  = null,
+                    @field:Attribute(name="Default"       , required = false ) var default        : String?  = null,
+                    @field:Attribute(name="MultipleValues", required = false ) var multipleValues : Boolean? = null,
+                    @field:Attribute(name="NearestValue"  , required = false ) var nearestValue   : Boolean? = null,
+                    @field:Attribute(name="Current"       , required = false ) var current        : Boolean? = null
+
+                )
             }
         }
     }
