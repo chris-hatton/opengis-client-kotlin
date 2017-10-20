@@ -108,7 +108,7 @@ class WmsCapabilities(
                 @field:Element(name = "CRS",                      required=false) var crs                   : String? = null,
                 @field:Element(name = "EX_GeographicBoundingBox", required=false) var geographicBoundingBox : EXBoundingBox? = null,
                 @field:Element(name = "BoundingBox",              required=false) var boundingBox           : BoundingBox?   = null,
-                @field:Element(name = "Dimension",                required=false) var dimension             : String? = null,
+                @field:Element(name = "Dimension",                required=false) var dimension             : Dimension? = null,
                 @field:Element(name = "Attribution",              required=false) var attribution           : String? = null,
                 @field:Element(name = "AuthorityURL",             required=false) var authorityURL          : AuthorityUrl? = null,
                 @field:Element(name = "Identifier",               required=false) var identifier            : String? = null,
@@ -150,7 +150,39 @@ class WmsCapabilities(
                     @field:Attribute(name="resy", required = false) var resy : Double? = null
                 )
 
+                @Root(name="Dimension")
+                data class Dimension(
+                    @field:Attribute(name="Name"          , required = true  ) var name           : String?  = null,
+                    @field:Attribute(name="Units"         , required = true  ) var units          : String?  = null,
+                    @field:Attribute(name="UnitSymbol"    , required = false ) var unitSymbol     : String?  = null,
+                    @field:Attribute(name="Default"       , required = false ) var default        : String?  = null,
+                    @field:Attribute(name="MultipleValues", required = false ) var multipleValues : Boolean? = null,
+                    @field:Attribute(name="NearestValue"  , required = false ) var nearestValue   : Boolean? = null,
+                    @field:Attribute(name="Current"       , required = false ) var current        : Boolean? = null
+                )
 
+                @Root(name="Attribution")
+                data class Attribution(
+                        /*
+                        <element ref="wms:Title" minOccurs="0"/>
+                <element ref="wms:OnlineResource" minOccurs="0"/>
+                <element ref="wms:LogoURL" minOccurs="0"/>
+                */
+                )
+
+                @Root(name="LogoURL")
+                data class LogoURL(
+                        /*
+                        <complexType>
+                <sequence>
+                <element ref="wms:Format"/>
+                <element ref="wms:OnlineResource"/>
+                </sequence>
+                <attribute name="width" type="positiveInteger"/>
+                <attribute name="height" type="positiveInteger"/>
+                </complexType>
+                */
+                )
             }
         }
     }
