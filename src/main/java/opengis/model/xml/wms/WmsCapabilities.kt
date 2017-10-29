@@ -261,7 +261,7 @@ class WmsCapabilities(
             @Root(name="Style")
             data class Style(
                 @field:Element     (name="Name",          required = true )            var name          : String?    = null,
-                @field:Element     (name="Title",         required = true )            var title         : String?    = null,
+                @field:Element     (name="Title",         required = false)            var title         : String?    = null,
                 @field:Element     (name="Abstract",      required = false)            var abstract      : String?    = null,
                 @field:ElementList (entry = "LegendURL",  empty = true, inline = true) var legendUrls    : List<LegendURL>? = null,
                 @field:Element     (name="StyleSheetURL", required = false)            var styleSheetUrl : URL?       = null,
