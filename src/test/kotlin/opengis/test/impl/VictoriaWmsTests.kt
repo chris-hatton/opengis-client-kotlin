@@ -11,7 +11,7 @@ import java.io.InputStream
 class VictoriaWmsTests : AbstractStreamWmsTests() {
 
     override val getCapabilitiesInputStream: InputStream
-        get() = this.javaClass.getResourceAsStream("/opengis-reference/wms-GetCapabilities-1.3.0.xml")
+        get() = this.javaClass.getResourceAsStream("/data-vic-gov-au/wms-GetCapabilities-1.3.0.xml")
 
     override fun testWmsCapabilities(capabilities: WmsCapabilities) {
         Assert.assertEquals("","")

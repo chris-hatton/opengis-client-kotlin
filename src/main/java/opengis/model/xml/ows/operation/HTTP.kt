@@ -8,16 +8,11 @@ import org.simpleframework.xml.Path
  * Specified in: http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd
  *
  * Available HTTP request methods. At least "Get" shall be supported.
+ *
+ * @param get The URL prefix for the HTTP "Get" request method.
+ * @param post The URL prefix for the HTTP "Post" request method.
  */
 data class HTTP(
-    @field:Element(name="Get",  required = true ) var get : Operation.Get?  = null,
-    @field:Element(name="Post", required = false) var post: Operation.Post? = null
-) {
-    sealed class Operation(
-        @field:Element(name="href") var onlineResource: OnlineResource? = null
-    ) {
-        class Get  : Operation()
-        class Post : Operation()
-    }
-}
-
+    @field:Path("Get" ) @field:Element(name="OnlineResource", required = true ) var get : OnlineResource? = null,
+    @field:Path("Post") @field:Element(name="OnlineResource", required = false) var post: OnlineResource? = null
+)
