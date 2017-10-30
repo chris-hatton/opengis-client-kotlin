@@ -13,8 +13,8 @@ import org.simpleframework.xml.Root
  * Model for the Service Meta-data document generated in response to OpenGIS 'GetCapabilties'
  * requests.
  */
-@Root(strict=false, name = "WFS_Capabilities")
-class WfsCapabilities(
+@Root(name = "WFS_Capabilities")
+data class WfsCapabilities(
         @field:Attribute var updateSequence : Int      = 0,
         @field:Attribute var version        : String   = "",
         serviceIdentification : ServiceIdentification? = null,

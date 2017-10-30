@@ -10,8 +10,6 @@ import org.simpleframework.xml.*
  */
 @Root(strict=false, name = "WMS_Capabilities")
 class WmsCapabilities(
-        //@field:Attribute var updateSequence : Int         = 0,
-        //@field:Attribute var version        : String      = "",
         @field:Element(name="Service"    ) var service    : Service?    = null,
         @field:Element(name="Capability" ) var capability : Capability? = null
 ) {
@@ -22,33 +20,33 @@ class WmsCapabilities(
      */
     @Root(name="Service")
     data class Service(
-        @field:Element(name="Name"              ) var name     : String? = null,
-        @field:Element(name="Title"             ) var title    : String? = null,
-        @field:Element(name="Abstract"          ) var abstract : String? = null,
-        @field:ElementList(name="KeywordList", empty = true, entry="Keyword", required = false) var keywords : List<String>? = null,
-        @field:Element(name="OnlineResource", required = false ) var onlineResource : String? = null,
-        @field:Element(name="ContactInformation") var contact        : Contact? = null,
-        @field:Element(name="Fees"              ) var fees           : String? = null,
-        @field:Element(name="AccessConstraints" ) var string         : String? = null,
-        @field:Element(name="LayerLimit", required = false ) var layerLimit     : Int? = null,
-        @field:Element(name="MaxWidth",   required = false ) var maxWidth       : Int? = null,
-        @field:Element(name="MaxHeight",  required = false ) var maxHeight      : Int? = null
+            @field:Element(name="Name"              ) var name     : String? = null,
+            @field:Element(name="Title"             ) var title    : String? = null,
+            @field:Element(name="Abstract"          ) var abstract : String? = null,
+            @field:ElementList(name="KeywordList", empty = true, entry="Keyword", required = false) var keywords : List<String>? = null,
+            @field:Element(name="OnlineResource", required = false ) var onlineResource : String? = null,
+            @field:Element(name="ContactInformation") var contact        : Contact? = null,
+            @field:Element(name="Fees"              ) var fees           : String? = null,
+            @field:Element(name="AccessConstraints" ) var string         : String? = null,
+            @field:Element(name="LayerLimit", required = false ) var layerLimit     : Int? = null,
+            @field:Element(name="MaxWidth",   required = false ) var maxWidth       : Int? = null,
+            @field:Element(name="MaxHeight",  required = false ) var maxHeight      : Int? = null
     ) {
         /**
          * Information about a contact person for the service.
          */
         @Root(name="Contact")
         data class Contact(
-            @field:Path("ContactPersonPrimary")
+                @field:Path("ContactPersonPrimary")
             @field:Element(name="ContactPerson") var name : String? = null,
-            @field:Path("ContactPersonPrimary")
+                @field:Path("ContactPersonPrimary")
             @field:Element(name="ContactOrganization") var organization : String? = null,
 
-            @field:Element(name="ContactPosition"             ) var position     : String? = null,
-            @field:Element(name="ContactAddress"              ) var address      : Address? = null,
-            @field:Element(name="ContactVoiceTelephone"       ) var telephone    : String? = null,
-            @field:Element(name="ContactFacsimileTelephone", required = false ) var fax : String? = null, // Not in xsd
-            @field:Element(name="ContactElectronicMailAddress") var emailAddress : String? = null
+                @field:Element(name="ContactPosition"             ) var position     : String? = null,
+                @field:Element(name="ContactAddress"              ) var address      : Address? = null,
+                @field:Element(name="ContactVoiceTelephone"       ) var telephone    : String? = null,
+                @field:Element(name="ContactFacsimileTelephone", required = false ) var fax : String? = null, // Not in xsd
+                @field:Element(name="ContactElectronicMailAddress") var emailAddress : String? = null
         ) {
             @Root(name="Address")
             data class Address(
@@ -120,31 +118,31 @@ class WmsCapabilities(
          */
         @Root(name="Layer")
         data class Layer(
-            @field:Element      (name = "Name",                     required=false)                                  var name                  : String?             = null,
-            @field:Element      (name = "Title", required = true)                                                    var title                 : String?             = null,
-            @field:Element      (name = "Abstract",                 required=false)                                  var abstract              : String?             = null,
-            @field:ElementList  (name = "KeywordList",              empty = true, entry="Keyword", required = false) var keywords              : List<String>?       = null,
-            @field:ElementList  (entry = "CRS",                     empty = true, inline = true, required = false)   var crss                  : List<String>?       = null,
-            @field:Element      (name = "EX_GeographicBoundingBox", required = false)                                var geographicBoundingBox : EXBoundingBox?      = null,
-            @field:ElementList  (entry = "BoundingBox",             empty = true, inline = true, required = false)   var boundingBoxes         : List<BoundingBox>?  = null,
-            @field:ElementList  (entry = "Dimension",               empty = true, inline = true, required = false)   var dimensions            : List<Dimension>?    = null,
-            @field:Element      (name = "Attribution",              required = false)                                var attribution           : Attribution?             = null,
-            @field:ElementList  (entry = "AuthorityURL",            empty = true, inline = true, required = false)   var authorityURLs         : List<AuthorityURL>? = null,
-            @field:ElementList  (entry = "Identifier",              empty = true, inline = true, required = false)   var identifiers           : List<String>?       = null,
-            @field:ElementList  (entry = "MetadataURL",             empty = true, inline = true, required = false)   var metadataURLs          : List<MetadataURL>?  = null,
-            @field:ElementList  (entry = "DataURL",                 empty = true, inline = true, required = false)   var dataURLs              : List<URL>?          = null,
-            @field:ElementList  (entry = "FeatureListURL",          empty = true, inline = true, required = false)   var featureListURLs       : List<URL>?          = null,
-            @field:ElementList  (entry = "Style",                   empty = true, inline = true, required = false)   var styles                : List<Style>?        = null,
-            @field:Element      (name = "MinScaleDenominator",      required = false)                                var minScaleDenominator   : Double?             = null,
-            @field:Element      (name = "MaxScaleDenominator",      required = false)                                var maxScaleDenominator   : Double?             = null,
-            @field:ElementList  (entry = "Layer",                   empty = true, inline = true, required = false)  var layers                : List<Layer>?        = null,
+                @field:Element      (name = "Name",                     required=false)                                  var name                  : String?             = null,
+                @field:Element      (name = "Title", required = true)                                                    var title                 : String?             = null,
+                @field:Element      (name = "Abstract",                 required=false)                                  var abstract              : String?             = null,
+                @field:ElementList  (name = "KeywordList",              empty = true, entry="Keyword", required = false) var keywords              : List<String>?       = null,
+                @field:ElementList  (entry = "CRS",                     empty = true, inline = true, required = false)   var crss                  : List<String>?       = null,
+                @field:Element      (name = "EX_GeographicBoundingBox", required = false)                                var geographicBoundingBox : EXBoundingBox?      = null,
+                @field:ElementList  (entry = "BoundingBox",             empty = true, inline = true, required = false)   var boundingBoxes         : List<BoundingBox>?  = null,
+                @field:ElementList  (entry = "Dimension",               empty = true, inline = true, required = false)   var dimensions            : List<Dimension>?    = null,
+                @field:Element      (name = "Attribution",              required = false)                                var attribution           : Attribution?             = null,
+                @field:ElementList  (entry = "AuthorityURL",            empty = true, inline = true, required = false)   var authorityURLs         : List<AuthorityURL>? = null,
+                @field:ElementList  (entry = "Identifier",              empty = true, inline = true, required = false)   var identifiers           : List<String>?       = null,
+                @field:ElementList  (entry = "MetadataURL",             empty = true, inline = true, required = false)   var metadataURLs          : List<MetadataURL>?  = null,
+                @field:ElementList  (entry = "DataURL",                 empty = true, inline = true, required = false)   var dataURLs              : List<URL>?          = null,
+                @field:ElementList  (entry = "FeatureListURL",          empty = true, inline = true, required = false)   var featureListURLs       : List<URL>?          = null,
+                @field:ElementList  (entry = "Style",                   empty = true, inline = true, required = false)   var styles                : List<Style>?        = null,
+                @field:Element      (name = "MinScaleDenominator",      required = false)                                var minScaleDenominator   : Double?             = null,
+                @field:Element      (name = "MaxScaleDenominator",      required = false)                                var maxScaleDenominator   : Double?             = null,
+                @field:ElementList  (entry = "Layer",                   empty = true, inline = true, required = false)  var layers                : List<Layer>?        = null,
 
-            @field:Attribute(name = "queryable"  , required = false) var queryable   : Boolean    = false,
-            @field:Attribute(name = "cascaded"   , required = false) var cascaded    : Int        = 0,
-            @field:Attribute(name = "opaque"     , required = false) var opaque      : Boolean    = false,
-            @field:Attribute(name = "noSubsets"  , required = false) var noSubsets   : Boolean    = false,
-            @field:Attribute(name = "fixedWidth" , required = false) var fixedWidth  : Int        = 0,
-            @field:Attribute(name = "fixedHeight", required = false) var fixedHeight : Int        = 0
+                @field:Attribute(name = "queryable"  , required = false) var queryable   : Boolean    = false,
+                @field:Attribute(name = "cascaded"   , required = false) var cascaded    : Int        = 0,
+                @field:Attribute(name = "opaque"     , required = false) var opaque      : Boolean    = false,
+                @field:Attribute(name = "noSubsets"  , required = false) var noSubsets   : Boolean    = false,
+                @field:Attribute(name = "fixedWidth" , required = false) var fixedWidth  : Int        = 0,
+                @field:Attribute(name = "fixedHeight", required = false) var fixedHeight : Int        = 0
         ) {
             /**
              * The EX_GeographicBoundingBox attributes indicate the limits of the enclosing
@@ -260,12 +258,12 @@ class WmsCapabilities(
              */
             @Root(name="Style")
             data class Style(
-                @field:Element     (name="Name",          required = true )            var name          : String?    = null,
-                @field:Element     (name="Title",         required = false)            var title         : String?    = null,
-                @field:Element     (name="Abstract",      required = false)            var abstract      : String?    = null,
-                @field:ElementList (entry = "LegendURL",  empty = true, inline = true) var legendUrls    : List<LegendURL>? = null,
-                @field:Element     (name="StyleSheetURL", required = false)            var styleSheetUrl : URL?       = null,
-                @field:Element     (name="StyleURL",      required = false)            var styleUrl      : URL?       = null
+                    @field:Element     (name="Name",          required = true )            var name          : String?    = null,
+                    @field:Element     (name="Title",         required = false)            var title         : String?    = null,
+                    @field:Element     (name="Abstract",      required = false)            var abstract      : String?    = null,
+                    @field:ElementList (entry = "LegendURL",  empty = true, inline = true) var legendUrls    : List<LegendURL>? = null,
+                    @field:Element     (name="StyleSheetURL", required = false)            var styleSheetUrl : URL?       = null,
+                    @field:Element     (name="StyleURL",      required = false)            var styleUrl      : URL?       = null
             )
         }
     }
