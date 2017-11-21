@@ -196,9 +196,9 @@ class WmsCapabilities(
              */
             @Root(name="Attribution")
             data class Attribution(
-                @field:Element(name="Title",          required = false) var title          : String?         = null,
-                @field:Element(name="OnlineResource", required = false) var onlineResource : OnlineResource? = null,
-                @field:Element(name="LogoURL",        required = false) var logoUrl        : LogoURL?        = null
+                    @field:Element(name="Title",          required = false) var title          : String?         = null,
+                    @field:Element(name="OnlineResource", required = false) var onlineResource : OnlineResource? = null,
+                    @field:Element(name="LogoURL",        required = false) var logoUrl        : LogoURL?        = null
             )
 
             /**
@@ -206,10 +206,10 @@ class WmsCapabilities(
              */
             @Root(name="LogoURL")
             data class LogoURL(
-                @field:Element  (name="Format",         required = true) var format         : String?         = null,
-                @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
-                @field:Attribute(name="width",          required = true) var width          : Int?            = null,
-                @field:Attribute(name="height",         required = true) var height         : Int?            = null
+                    @field:Element  (name="Format",         required = true) var format         : String?         = null,
+                    @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
+                    @field:Attribute(name="width",          required = true) var width          : Int?            = null,
+                    @field:Attribute(name="height",         required = true) var height         : Int?            = null
             )
 
             /**
@@ -223,8 +223,8 @@ class WmsCapabilities(
              */
             @Root(name="AuthorityURL")
             data class AuthorityURL(
-                @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
-                @field:Attribute(name="name",           required = true) var name           : String?         = null
+                    @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
+                    @field:Attribute(name="name",           required = true) var name           : String?         = null
             )
 
             /**
@@ -237,17 +237,17 @@ class WmsCapabilities(
              */
             @Root(name="MetadataURL")
             data class MetadataURL (
-                @field:Element  (name="Format",         required = true) var format         : String?         = null,
-                @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
-                @field:Attribute(name="type",           required = true) var type : String? = null
+                    @field:Element  (name="Format",         required = true) var format         : String?         = null,
+                    @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
+                    @field:Attribute(name="type",           required = true) var type : String? = null
             )
 
             @Root(name="LegendURL")
             data class LegendURL (
-                @field:Element  (name="Format",         required = true) var format         : String?         = null,
-                @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
-                @field:Attribute(name="width",          required = true) var width  : Int? = null,
-                @field:Attribute(name="height",         required = true) var height : Int? = null
+                    @field:Element  (name="Format",         required = true) var format         : String?         = null,
+                    @field:Element  (name="OnlineResource", required = true) var onlineResource : OnlineResource? = null,
+                    @field:Attribute(name="width",          required = true) var width  : Int? = null,
+                    @field:Attribute(name="height",         required = true) var height : Int? = null
             )
 
             /**
