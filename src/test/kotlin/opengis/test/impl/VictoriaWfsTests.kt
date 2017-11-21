@@ -4,6 +4,7 @@ import opengis.model.xml.wfs.WfsCapabilities
 import opengis.test.WfsTests
 import opengis.test.util.XmlDataTests
 import org.junit.Ignore
+import org.junit.Test
 
 /**
  * Created by Chris on 30/10/2017.
@@ -15,6 +16,7 @@ class VictoriaWfsTests : WfsTests {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    @Test
     override fun testGetCapabilities() = XmlDataTests.test(resource = "/data-vic-gov-au/wfs-GetCapabilities-1.1.0.xml") {
         capabilities: WfsCapabilities ->
 
