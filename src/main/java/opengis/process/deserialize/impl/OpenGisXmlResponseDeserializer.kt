@@ -9,7 +9,11 @@ import java.io.InputStream
 import kotlin.reflect.KClass
 
 /**
- * Created by Chris on 01/10/2017.
+ * Response deserializer which uses SimpleXML and a suitably annotated model class to
+ * unmarshal XML data.
+ *
+ * Several key geo-server services such as WmsCapabilities, WfsCapabilities, only support XML
+ * responses.
  */
 class OpenGisXmlResponseDeserializer(val pullParserFactory: XmlPullParserFactory) : OpenGisResponseDeserializer {
 
@@ -19,6 +23,7 @@ class OpenGisXmlResponseDeserializer(val pullParserFactory: XmlPullParserFactory
         resultClass : KClass<Result>
     ): Result {
         val serializer = Persister()
+        @Suppress("UNCHECKED_CAST")
         return when( resultClass ) {
             WfsCapabilities::class -> serializer.read(WfsCapabilities::class.java, bytes) as Result
             else -> throw OpenGisResponseDeserializer.Exception.UnhandledType

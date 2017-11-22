@@ -7,6 +7,9 @@ import org.junit.Ignore
 import org.junit.Test
 
 /**
+ * Test for successful un-marsharshalling of various examples of OpenGIS standard responses from
+ * the Victorian State of Australia's Public geo-server.
+ *
  * Created by Chris on 30/10/2017.
  */
 class VictoriaWfsTests : WfsTests {
@@ -19,7 +22,7 @@ class VictoriaWfsTests : WfsTests {
     @Test
     override fun testGetCapabilities() = XmlDataTests.test(resource = "/data-vic-gov-au/wfs-GetCapabilities-1.1.0.xml") {
         capabilities: WfsCapabilities ->
-
+        capabilities.featureTypeList
     }
 
     @Ignore
