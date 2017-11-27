@@ -1,13 +1,16 @@
 package opengis.process
 
+import opengis.model.app.OpenGisServer
+import opengis.model.app.OpenGisService
 import opengis.model.app.request.OpenGisRequest
+import java.net.URL
 import kotlin.reflect.KClass
 
 
 /**
  * Created by Chris on 16/09/2017.
  */
-interface OpenGisClient {
+interface OpenGisRequestProcessor {
 
     interface Callback<in Result> {
         fun success( result: Result )
@@ -26,9 +29,9 @@ interface OpenGisClient {
     }
 }
 
-inline fun <reified Result:Any> OpenGisClient.execute(
-                 request    : OpenGisRequest<Result>,
-                 callback   : OpenGisClient.Callback<Result>
+inline fun <reified Result:Any> OpenGisRequestProcessor.execute(
+    request    : OpenGisRequest<Result>,
+    callback   : OpenGisRequestProcessor.Callback<Result>
 ) = this.execute(
         request    = request,
         resultType = Result::class,

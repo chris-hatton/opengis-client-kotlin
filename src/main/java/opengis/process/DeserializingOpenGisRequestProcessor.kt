@@ -8,15 +8,15 @@ import kotlin.reflect.KClass
 /**
  * Created by Chris on 23/09/2017.
  */
-interface DeserializingOpenGisClient : OpenGisClient, OpenGisResponseDeserializer {
+interface DeserializingOpenGisRequestProcessor : OpenGisRequestProcessor, OpenGisResponseDeserializer {
 
     override fun <Result:Any> execute(
             request    : OpenGisRequest<Result>,
             resultType : KClass<Result>,
-            callback   : OpenGisClient.Callback<Result>
+            callback   : OpenGisRequestProcessor.Callback<Result>
         ) {
 
-        val bytesCallback = object : OpenGisClient.Callback<InputStream> {
+        val bytesCallback = object : OpenGisRequestProcessor.Callback<InputStream> {
             override fun success(result: InputStream) {
                 try {
                     val deserializedResult = deserializeResult( result, request, resultType )
@@ -32,5 +32,5 @@ interface DeserializingOpenGisClient : OpenGisClient, OpenGisResponseDeserialize
         getBytes( request, bytesCallback )
     }
 
-    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: OpenGisClient.Callback<InputStream>)
+    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: OpenGisRequestProcessor.Callback<InputStream>)
 }
