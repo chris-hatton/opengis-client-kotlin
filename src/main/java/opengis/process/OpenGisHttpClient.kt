@@ -15,10 +15,10 @@ abstract class OpenGisHttpClient(val server: OpenGisServer) : DeserializingOpenG
         object ServiceUnsupportedByServerException : Exception()
     }
 
-    override fun <Result : Any> getBytes(request: OpenGisRequest<Result>, callback: OpenGisRequestProcessor.Callback<InputStream>) {
+    override fun <Result : Any> getBytes(request: OpenGisRequest<Result>, callback: Callback<InputStream>) {
         val service : OpenGisService<*> = server.service( request = request ) ?: throw Exception.ServiceUnsupportedByServerException
         return getBytes(url = service.url, request = request, callback = callback)
     }
 
-    abstract fun <Result : Any> getBytes(url: URL, request: OpenGisRequest<Result>, callback: OpenGisRequestProcessor.Callback<InputStream>)
+    abstract fun <Result : Any> getBytes(url: URL, request: OpenGisRequest<Result>, callback: Callback<InputStream>)
 }

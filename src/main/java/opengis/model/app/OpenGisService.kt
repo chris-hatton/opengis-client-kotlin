@@ -1,6 +1,11 @@
 package opengis.model.app
 
 import opengis.model.app.request.OpenGisRequest
+import opengis.model.app.request.wms.GetCapabilities as GetWmsCapabilities
+import opengis.model.app.request.wmts.GetCapabilities as GetWmtsCapabilities
+import opengis.model.app.request.wfs.GetCapabilities as GetWfsCapabilities
+import opengis.model.app.request.wcs.GetCapabilities as GetWcsCapabilities
+import opengis.model.app.request.csw.GetCapabilities as GetCswCapabilities
 import opengis.model.xml.csw.CswCapabilities
 import opengis.model.xml.wcs.WcsCapabilities
 import opengis.model.xml.wfs.WfsCapabilities
@@ -16,32 +21,22 @@ sealed class OpenGisService<Capabilities>(val url: URL) {
     abstract fun getCapabilities() : OpenGisRequest<Capabilities>
 
     class WebFeatureService(url: URL) : OpenGisService<WfsCapabilities>(url) {
-        override fun getCapabilities() : OpenGisRequest<WfsCapabilities> {
-            TODO()
-        }
+        override fun getCapabilities() = GetWfsCapabilities()
     }
 
     class WebMapService(url: URL) : OpenGisService<WmsCapabilities>(url) {
-        override fun getCapabilities(): OpenGisRequest<WmsCapabilities> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun getCapabilities() = GetWmsCapabilities()
     }
 
     class WebMapTileService(url: URL) : OpenGisService<WmtsCapabilities>(url) {
-        override fun getCapabilities(): OpenGisRequest<WmtsCapabilities> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun getCapabilities() = GetWmtsCapabilities()
     }
 
     class WebCoverageService(url: URL) : OpenGisService<WcsCapabilities>(url) {
-        override fun getCapabilities(): OpenGisRequest<WcsCapabilities> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun getCapabilities() = GetWcsCapabilities()
     }
 
     class CatalogueServicesForWeb(url: URL) : OpenGisService<CswCapabilities>(url) {
-        override fun getCapabilities(): OpenGisRequest<CswCapabilities> {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
+        override fun getCapabilities() = GetCswCapabilities()
     }
 }

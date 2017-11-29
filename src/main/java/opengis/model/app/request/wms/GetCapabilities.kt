@@ -1,22 +1,19 @@
 package opengis.model.app.request.wms
 
-import opengis.model.app.MimeType
 import opengis.model.app.UpdateSequence
-import opengis.model.app.response.wms.ServiceMetaData
+import opengis.model.xml.wms.WmsCapabilities
 
 /**
  *
  */
 class GetCapabilities(
-        val format          : MimeType,
         val updateSequence  : UpdateSequence? = null
-) : WebMapServiceRequest<ServiceMetaData>() {
+) : WebMapServiceRequest<WmsCapabilities>() {
     override val requestIdentifier: String = "GetCapabilities"
 
     override fun collateParameters(parameters: MutableList<Pair<String, String>>) {
         super.collateParameters(parameters)
         parameters.apply {
-            add("FORMAT" to format.toString())
             updateSequence?.let { "UPDATESEQUENCE" to it }
         }
     }

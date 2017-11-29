@@ -19,23 +19,23 @@ import kotlin.reflect.KClass
  */
 class OkHttpOpenGisClient(
         server                           : OpenGisServer,
-        private val okHttpClient         : OkHttpClient,
-        private val responseDeserializer : OpenGisResponseDeserializer
+        private val okHttpClient         : OkHttpClient = OkHttpClient(),
+        private val responseDeserializer : OpenGisResponseDeserializer = OpenGisResponseDeserializer.createDefault()
     ) : OpenGisHttpClient(server), OpenGisResponseDeserializer by responseDeserializer {
 
-    override fun <Result : Any> getBytes(url: URL, request: OpenGisRequest<Result>, callback: OpenGisRequestProcessor.Callback<InputStream>) {
+    override fun <Result : Any> getBytes(url: URL, request: OpenGisRequest<Result>, callback: Callback<InputStream>) {
 
         val okHttpCallback = object : okhttp3.Callback {
-            override fun onFailure (call: Call, e: IOException    ) = callback.error(e)
+            override fun onFailure (call: Call, e: IOException    ) = callback(Outcome.Error(e))
             override fun onResponse(call: Call, response: Response) {
 
                 when( response.code() ) {
-                    200 -> callback.success( response.body()!!.byteStream() )
+                    200 -> callback(Outcome.Success( response.body()!!.byteStream() ))
                     else -> {
                         val errorXml = response.body()!!.string()
                         println(errorXml)
                         val error = OpenGisRequestProcessor.Exception.ServerError( xmlString = errorXml )
-                        callback.error(error)
+                        callback(Outcome.Error(error))
                     }
                 }
             }

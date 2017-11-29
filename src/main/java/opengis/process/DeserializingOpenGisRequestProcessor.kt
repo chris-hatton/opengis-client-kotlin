@@ -13,24 +13,23 @@ interface DeserializingOpenGisRequestProcessor : OpenGisRequestProcessor, OpenGi
     override fun <Result:Any> execute(
             request    : OpenGisRequest<Result>,
             resultType : KClass<Result>,
-            callback   : OpenGisRequestProcessor.Callback<Result>
+            callback   : Callback<Result>
         ) {
 
-        val bytesCallback = object : OpenGisRequestProcessor.Callback<InputStream> {
-            override fun success(result: InputStream) {
-                try {
-                    val deserializedResult = deserializeResult( result, request, resultType )
-                    callback.success( deserializedResult )
-                } catch( error: Throwable ) {
-                    callback.error( error )
+        val bytesCallback : Callback<InputStream> = { outcome ->
+            when(outcome) {
+                is Outcome.Success -> {
+                    val deserializedResult = deserializeResult( outcome.result, request, resultType )
+                    callback(Outcome.Success(deserializedResult))
+                }
+                is Outcome.Error -> {
+                    callback(Outcome.Error(outcome.error))
                 }
             }
-
-            override fun error(error: Throwable) = callback.error(error)
         }
 
         getBytes( request, bytesCallback )
     }
 
-    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: OpenGisRequestProcessor.Callback<InputStream>)
+    fun <Result:Any> getBytes( request: OpenGisRequest<Result>, callback: Callback<InputStream>)
 }

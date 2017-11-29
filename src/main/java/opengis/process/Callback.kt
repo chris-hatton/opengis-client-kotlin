@@ -1,6 +1,8 @@
 package opengis.process
 
-interface Callback<in Result> {
-    fun success( result: Result )
-    fun error( error: Throwable )
+typealias Callback<Result> = (Outcome<Result>)->Unit
+
+sealed class Outcome<Result> {
+    data class Success<Result>(val result: Result) : Outcome<Result>()
+    data class Error<Result>(val error: Throwable) : Outcome<Result>()
 }

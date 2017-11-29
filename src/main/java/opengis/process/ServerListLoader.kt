@@ -6,6 +6,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import opengis.model.app.OpenGisServer
 import opengis.model.app.OpenGisServerInfo
+import java.io.InputStream
 import java.io.InputStreamReader
 import java.net.URL
 
@@ -32,16 +33,21 @@ object ServerListLoader {
      * Synchronously load a list of OpenGisServer's from the list at the given URL.
      * This method is not intended for production applications.
      */
-    fun load( listURL: URL ) : List<OpenGisServer> {
+    fun load( listURL: URL ) : Set<OpenGisServer> {
         val request = Request.Builder().url(listURL).build()
-        val gson = GsonBuilder().create()
         val inputStream = OkHttpClient().newCall(request).execute().body()?.byteStream() ?: throw Exception.ListUnavailable
+        return load( inputStream )
+    }
+
+    fun load( resourcePath: String ) = load( inputStream = this::class.java.getResourceAsStream(resourcePath) )
+
+    fun load( inputStream: InputStream) : Set<OpenGisServer> {
+        val gson = GsonBuilder().create()
         inputStream.use {
             val reader = InputStreamReader(it)
             val typeToken : TypeToken<List<OpenGisServerInfo>> = object : TypeToken<List<OpenGisServerInfo>>() {}
             val serverInfo : List<OpenGisServerInfo> = gson.fromJson(reader,typeToken.type)
-            return serverInfo.map(OpenGisServerInfo::toOpenGisServer)
+            return serverInfo.map(OpenGisServerInfo::toOpenGisServer).toSet()
         }
     }
-
 }

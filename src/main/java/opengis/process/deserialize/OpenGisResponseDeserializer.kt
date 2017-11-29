@@ -38,7 +38,7 @@ interface OpenGisResponseDeserializer {
     }
 
     companion object {
-        fun createDefault( xmlPullParserFactory: XmlPullParserFactory ) : OpenGisResponseDeserializer {
+        fun createDefault( xmlPullParserFactory: XmlPullParserFactory = XmlPullParserFactory.newInstance() ) : OpenGisResponseDeserializer {
             return ByteArrayDeserializer()
                 .then(OpenGisXmlResponseDeserializer(xmlPullParserFactory))
                 .then(OpenGisJsonResponsesDeserializer())
