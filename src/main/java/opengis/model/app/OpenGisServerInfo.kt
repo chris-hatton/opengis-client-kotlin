@@ -4,26 +4,30 @@ import com.google.gson.annotations.SerializedName
 import java.net.URL
 
 data class OpenGisServerInfo(
-    @SerializedName("name"    ) val name     : String,
-    @SerializedName("services") val services : Services
+    @SerializedName("name"    ) val name     : String = "",
+    @SerializedName("services") val services : Services = Services()
 ) {
     data class Services(
-        @SerializedName("wfs" ) val wfsUrlString  : String?,
-        @SerializedName("wms" ) val wmsUrlString  : String?,
-        @SerializedName("wmts") val wmtsUrlString : String?,
-        @SerializedName("wcs" ) val wcsUrlString  : String?,
-        @SerializedName("cws" ) val cwsUrlString  : String?
+        @SerializedName("wfs" ) val wfsUrlString  : String? = null,
+        @SerializedName("wms" ) val wmsUrlString  : String? = null,
+        @SerializedName("wmts") val wmtsUrlString : String? = null,
+        @SerializedName("wcs" ) val wcsUrlString  : String? = null,
+        @SerializedName("cws" ) val cwsUrlString  : String? = null
     )
 
-    fun toOpenGisServer() : OpenGisServer {
-        val wfs  = services.wfsUrlString ?.let(::URL)?.let { OpenGisService.WebFeatureService      (it) }
-        val wms  = services.wmsUrlString ?.let(::URL)?.let { OpenGisService.WebMapService          (it) }
-        val wmts = services.wmtsUrlString?.let(::URL)?.let { OpenGisService.WebMapTileService      (it) }
-        val wcs  = services.wcsUrlString ?.let(::URL)?.let { OpenGisService.WebCoverageService     (it) }
-        val cws  = services.cwsUrlString ?.let(::URL)?.let { OpenGisService.CatalogueServicesForWeb(it) }
+    fun toOpenGisServer() : OpenGisHttpServer {
+        val serverEntries = setOf<Pair<OpenGisService<*>,URL>?>(
+            services.wfsUrlString ?.let { OpenGisService.WebFeatureService       to URL(it) },
+            services.wmsUrlString ?.let { OpenGisService.WebMapService           to URL(it) },
+            services.wmtsUrlString?.let { OpenGisService.WebMapTileService       to URL(it) },
+            services.wcsUrlString ?.let { OpenGisService.WebCoverageService      to URL(it) },
+            services.cwsUrlString ?.let { OpenGisService.CatalogueServicesForWeb to URL(it) }
+        )
 
-        return arrayOf<OpenGisService<*>?>(wfs,wms,wmts,wcs,cws).filterNotNull().let {
-            OpenGisServer( services = it.toSet() )
+        val serverMap = mutableMapOf<OpenGisService<*>,URL>().apply {
+            putAll(serverEntries.filterNotNull())
         }
+
+        return OpenGisHttpServer( serverMap )
     }
 }

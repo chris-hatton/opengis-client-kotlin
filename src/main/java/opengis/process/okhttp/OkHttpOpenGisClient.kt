@@ -4,21 +4,19 @@ import okhttp3.Call
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Response
-import opengis.model.app.OpenGisServer
-import opengis.model.app.OpenGisService
+import opengis.model.app.OpenGisHttpServer
 import opengis.model.app.request.OpenGisRequest
 import opengis.process.*
 import opengis.process.deserialize.OpenGisResponseDeserializer
 import java.io.IOException
 import java.io.InputStream
 import java.net.URL
-import kotlin.reflect.KClass
 
 /**
  * Created by Chris on 21/09/2017.
  */
 class OkHttpOpenGisClient(
-        server                           : OpenGisServer,
+        server                           : OpenGisHttpServer,
         private val okHttpClient         : OkHttpClient = OkHttpClient(),
         private val responseDeserializer : OpenGisResponseDeserializer = OpenGisResponseDeserializer.createDefault()
     ) : OpenGisHttpClient(server), OpenGisResponseDeserializer by responseDeserializer {
