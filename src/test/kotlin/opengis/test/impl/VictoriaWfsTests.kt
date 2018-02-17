@@ -1,6 +1,6 @@
 package opengis.test.impl
 
-import opengis.model.xml.wfs.WfsCapabilities
+import opengis.model.transport.xml.wfs.WfsCapabilities
 import opengis.test.WfsTests
 import opengis.test.util.XmlDataTests
 import org.junit.Ignore

@@ -1,7 +1,7 @@
 package opengis.model.app.request.wfs
 
 import opengis.model.app.UpdateSequence
-import opengis.model.xml.wfs.WfsCapabilities
+import opengis.model.transport.xml.wfs.WfsCapabilities
 
 /**
  *

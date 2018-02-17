@@ -1,7 +1,6 @@
 package opengis.model.app.request.wmts
 
 import opengis.model.app.ExceptionFormat
-import opengis.model.app.Layer
 import opengis.model.app.MimeType
 import opengis.model.app.Style
 import opengis.model.app.request.GetResourceRepresentation

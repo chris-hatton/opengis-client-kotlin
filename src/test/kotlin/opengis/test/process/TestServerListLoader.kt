@@ -2,7 +2,7 @@ package opengis.test.process
 
 import opengis.model.app.OpenGisHttpServer
 import opengis.model.app.request.wms.GetCapabilities
-import opengis.model.xml.wms.WmsCapabilities
+import opengis.model.transport.xml.wms.WmsCapabilities
 import opengis.process.Callback
 import opengis.process.Outcome
 import opengis.process.ServerListLoader

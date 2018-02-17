@@ -1,6 +1,6 @@
 package opengis.test.impl
 
-import opengis.model.xml.wms.WmsCapabilities
+import opengis.model.transport.xml.wms.WmsCapabilities
 import opengis.test.WmsTests
 import opengis.test.util.XmlDataTests.test
 import org.junit.Assert

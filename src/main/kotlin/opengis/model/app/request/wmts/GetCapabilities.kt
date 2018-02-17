@@ -2,7 +2,7 @@ package opengis.model.app.request.wmts
 
 import opengis.model.app.UpdateSequence
 import opengis.model.app.request.GetResourceRepresentation
-import opengis.model.xml.wmts.WmtsCapabilities
+import opengis.model.transport.xml.wmts.WmtsCapabilities
 
 /**
  * WMTS GetCapabilities operation request

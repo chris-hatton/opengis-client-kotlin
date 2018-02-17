@@ -11,13 +11,12 @@ import opengis.model.app.request.wmts.GetCapabilities as GetWmtsCapabilities
 import opengis.model.app.request.wfs.GetCapabilities as GetWfsCapabilities
 import opengis.model.app.request.wcs.GetCapabilities as GetWcsCapabilities
 import opengis.model.app.request.csw.GetCapabilities as GetCswCapabilities
-import opengis.model.xml.csw.CswCapabilities
-import opengis.model.xml.wcs.WcsCapabilities
-import opengis.model.xml.wfs.WfsCapabilities
-import opengis.model.xml.wms.WmsCapabilities
-import opengis.model.xml.wmts.WmtsCapabilities
+import opengis.model.transport.xml.csw.CswCapabilities
+import opengis.model.transport.xml.wcs.WcsCapabilities
+import opengis.model.transport.xml.wfs.WfsCapabilities
+import opengis.model.transport.xml.wms.WmsCapabilities
+import opengis.model.transport.xml.wmts.WmtsCapabilities
 import opengis.process.OpenGisRequestProcessor
-import java.net.URL
 
 /**
  * Created by Chris on 23/09/2017.
