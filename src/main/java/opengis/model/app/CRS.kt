@@ -1,7 +1,8 @@
 package opengis.model.app
 
 /**
- * Models the Coordinate Reference Systems (CRS's) allowable in the OpenGIS specification.
+ * Kotlin sealed-class model of the various representations of
+ * Coordinate Reference System allowable in the OpenGIS specification.
  *
  * OpenGIS standards Coordinate Reference Systems
  */
@@ -13,7 +14,7 @@ sealed class CRS(val nameSpace: String) {
     }
 
     /**
-     * Coordinate Reference Systems pertaining to 2D layers
+     * Layer Coordinate Reference Systems
      */
     class Layer( nameSpace: String, val name: String ) : CRS( nameSpace ) {
 
@@ -41,9 +42,6 @@ sealed class CRS(val nameSpace: String) {
         override fun toString(): String = nameSpace + ':' + name
     }
 
-    /**
-     *
-     */
     sealed class Vertical( nameSpace: String ) : CRS( nameSpace ) {
         data class Label( val label: String )
         data class URL  ( val url: URL)

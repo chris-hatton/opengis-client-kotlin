@@ -1,12 +1,17 @@
-package opengis.model.app.request.wms
+package opengis.model.app.request.wmts
 
 import opengis.model.app.ExceptionFormat
-import opengis.model.app.request.wmts.Layer
+import opengis.model.app.Layer
 import opengis.model.app.MimeType
-import opengis.model.app.response.wms.FeatureInfo
+import opengis.model.app.Style
+import opengis.model.app.request.GetResourceRepresentation
+import opengis.model.app.request.wms.GetMap
+import opengis.model.app.response.wmts.FeatureInfo
 
 /**
- *
+ * WMTS GetFeatureInfo operation request
+ * Section 7.2.2.1
+ * http://portal.opengeospatial.org/files/?artifact_id=35326
  */
 class GetFeatureInfo(
         val mapRequest      : GetMap<*>,
@@ -15,8 +20,15 @@ class GetFeatureInfo(
         val featureCount    : Int?             = null,
         val pixelColumn     : Int,
         val pixelRow        : Int,
-        val exceptionFormat : ExceptionFormat? = null
-) : WebMapServiceRequest<FeatureInfo>() {
+        val exceptionFormat : ExceptionFormat? = null,
+        override val layer           : Layer,
+        override val style           : Style,
+        override val format          : String,
+        override val tileMatrixSet   : String,
+        override val tileMatrix      : String,
+        override val tileRow         : Int,
+        override val tileCol         : Int
+) : WebMapTileServiceRequest<FeatureInfo>(), TileRequest, GetResourceRepresentation {
     override val requestIdentifier: String = "GetFeatureInfo"
 
     override fun collateParameters(parameters: MutableList<Pair<String, String>>) {

@@ -1,7 +1,7 @@
 package opengis.model.app.request.wms
 
 import opengis.model.app.UpdateSequence
-import opengis.model.transport.xml.wms.WmsCapabilities
+import opengis.model.xml.wms.WmsCapabilities
 
 /**
  *

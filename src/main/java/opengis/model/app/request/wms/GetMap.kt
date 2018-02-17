@@ -2,7 +2,6 @@ package opengis.model.app.request.wms
 
 import geojson.BoundingBox
 import opengis.model.app.*
-import opengis.model.app.request.wmts.Layer
 
 /**
  * Ref: Section 7.3 of OpenGIS Web Map Service WMS Implementation Specification

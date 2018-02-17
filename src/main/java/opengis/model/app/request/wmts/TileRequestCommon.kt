@@ -1,5 +1,6 @@
 package opengis.model.app.request.wmts
 
+import opengis.model.app.Layer
 import opengis.model.app.Style
 
 /**
