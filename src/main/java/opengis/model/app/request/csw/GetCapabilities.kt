@@ -1,6 +1,6 @@
 package opengis.model.app.request.csw
 
-import opengis.model.xml.csw.CswCapabilities
+import opengis.model.transport.xml.csw.CswCapabilities
 
 /**
  * Created by Chris on 24/11/2017.

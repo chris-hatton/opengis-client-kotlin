@@ -1,7 +1,7 @@
 package opengis.model.app.request.wms
 
 import opengis.model.app.ExceptionFormat
-import opengis.model.app.Layer
+import opengis.model.app.request.wmts.Layer
 import opengis.model.app.MimeType
 import opengis.model.app.response.wms.FeatureInfo
 

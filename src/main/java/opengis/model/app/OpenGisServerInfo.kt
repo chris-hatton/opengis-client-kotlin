@@ -15,19 +15,11 @@ data class OpenGisServerInfo(
         @SerializedName("cws" ) val cwsUrlString  : String? = null
     )
 
-    fun toOpenGisServer() : OpenGisHttpServer {
-        val serverEntries = setOf<Pair<OpenGisService<*>,URL>?>(
-            services.wfsUrlString ?.let { OpenGisService.WebFeatureService       to URL(it) },
-            services.wmsUrlString ?.let { OpenGisService.WebMapService           to URL(it) },
-            services.wmtsUrlString?.let { OpenGisService.WebMapTileService       to URL(it) },
-            services.wcsUrlString ?.let { OpenGisService.WebCoverageService      to URL(it) },
-            services.cwsUrlString ?.let { OpenGisService.CatalogueServicesForWeb to URL(it) }
-        )
-
-        val serverMap = mutableMapOf<OpenGisService<*>,URL>().apply {
-            putAll(serverEntries.filterNotNull())
-        }
-
-        return OpenGisHttpServer( serverMap )
-    }
+    fun toOpenGisServer() = OpenGisHttpServer(setOf<Pair<OpenGisService<*>,URL>?>(
+        services.wfsUrlString ?.let { OpenGisService.WebFeatureService       to URL(it) },
+        services.wmsUrlString ?.let { OpenGisService.WebMapService           to URL(it) },
+        services.wmtsUrlString?.let { OpenGisService.WebMapTileService       to URL(it) },
+        services.wcsUrlString ?.let { OpenGisService.WebCoverageService      to URL(it) },
+        services.cwsUrlString ?.let { OpenGisService.CatalogueServicesForWeb to URL(it) }
+    ).filterNotNull().toMap())
 }

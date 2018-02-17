@@ -1,7 +1,7 @@
 package opengis.process.deserialize.impl
 
 import opengis.model.app.request.OpenGisRequest
-import opengis.model.xml.wfs.WfsCapabilities
+import opengis.model.transport.xml.wfs.WfsCapabilities
 import opengis.process.deserialize.OpenGisResponseDeserializer
 import org.simpleframework.xml.core.Persister
 import org.xmlpull.v1.XmlPullParserFactory
@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 
 /**
  * Response deserializer which uses SimpleXML and a suitably annotated model class to
- * unmarshal XML data.
+ * un-marshal XML data.
  *
  * Several key geo-server services such as WmsCapabilities, WfsCapabilities, only support XML
  * responses.
